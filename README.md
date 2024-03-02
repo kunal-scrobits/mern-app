@@ -41,4 +41,3 @@ Note - USP of this To-Do list manager is that your task will not delete permanen
 - For running the client app in dev mode use `npm start or yarn start`.
 
 ### Note: `npm start` can be used for prod.
-
