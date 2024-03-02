@@ -28,16 +28,9 @@ Note - USP of this To-Do list manager is that your task will not delete permanen
 - [github](https://github.com/)
 
 
-## How run client app
-- To run client begin with installing dependecies with below `npm install or yarn`
+## How run all the apps with docker-compose
+- To run the app just use `docker compose up --build`.
 
-- For running the client app in dev mode use `npm start or yarn start`.
+- To run the app in the background add 'detached' flag at the `-d`,
+`docker compose up --build -d`
 
-### Note: `npm start or yarn start` is for dev mode only, never use this for deploying the application on prod.
-
-## How run server app
-- Same step as client install dependencies with `npm install or yarn`
-
-- For running the client app in dev mode use `npm start or yarn start`.
-
-### Note: `npm start` can be used for prod.
