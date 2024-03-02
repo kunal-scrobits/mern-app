@@ -10,9 +10,10 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: example
 
   api:
-    build:
-      context: ./server
-      dockerfile: Dockerfile
+    # build:
+    #   context: ./server
+    #   dockerfile: Dockerfile
+    image: scrobitsdocker/todo-list-api:latest
     volumes:
       - ./server:/usr/src/app
     ports:
@@ -21,17 +22,31 @@ services:
       MONGODB_URI: "mongodb://root:example@mongo:27017"
     depends_on:
       - mongo
-
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+  
   client:
-    build:
-      context: ./client
-      dockerfile: Dockerfile
+    # build:
+    #   context: ./client
+    #   dockerfile: Dockerfile
     volumes:
       - ./client:/usr/src/app
+    image: scrobitsdocker/todo-list-client:latest
     ports:
       - "3000:3000"
     depends_on:
       - api
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 30
+    depends_on:
+      - api
+      - client
 
 volumes:
   mongo-db:
